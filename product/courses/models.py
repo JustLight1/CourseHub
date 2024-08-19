@@ -22,6 +22,10 @@ class Course(models.Model):
         decimal_places=2,
         verbose_name='Стоимость',
     )
+    is_available = models.BooleanField(
+        default=False,
+        verbose_name='Курс доступен для покупки',
+    )
 
     class Meta:
         verbose_name = 'Курс'
