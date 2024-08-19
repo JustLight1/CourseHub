@@ -70,7 +70,7 @@ class Subscription(models.Model):
         related_name='subscriptions',
         verbose_name='Курс',
     )
-    active = models.BooleanField(
+    is_active = models.BooleanField(
         default=False,
         verbose_name='Активная подписка',
     )
