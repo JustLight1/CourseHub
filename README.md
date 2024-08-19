@@ -64,7 +64,7 @@
 
 1. Клонируйте репозиторий:
    ```
-   git clone git@github.com:hqcamp/test-backend-3.git
+   git clone git@github.com:JustLight1/CourseHub.git
    ```
 2. Установите и активируйте виртуальное окружение:
    ```
