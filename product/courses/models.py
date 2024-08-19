@@ -15,10 +15,13 @@ class Course(models.Model):
     start_date = models.DateTimeField(
         auto_now=False,
         auto_now_add=False,
-        verbose_name='Дата и время начала курса'
+        verbose_name='Дата и время начала курса',
     )
-
-    # TODO
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name='Стоимость',
+    )
 
     class Meta:
         verbose_name = 'Курс'
@@ -41,7 +44,12 @@ class Lesson(models.Model):
         verbose_name='Ссылка',
     )
 
-    # TODO
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+        related_name='lessons',
+        verbose_name='Курс',
+    )
 
     class Meta:
         verbose_name = 'Урок'
