@@ -3,7 +3,6 @@ from django.db.models import Avg, Count
 from rest_framework import serializers
 
 from courses.models import Course, Group, Lesson
-# from users.models import Subscription
 
 User = get_user_model()
 
@@ -87,19 +86,32 @@ class CourseSerializer(serializers.ModelSerializer):
 
     def get_lessons_count(self, obj):
         """Количество уроков в курсе."""
-        # TODO Доп. задание
+        return obj.lessons.count()
 
     def get_students_count(self, obj):
         """Общее количество студентов на курсе."""
-        # TODO Доп. задание
+        return obj.subscriptions.filter(is_active=True).count()
 
     def get_groups_filled_percent(self, obj):
         """Процент заполнения групп, если в группе максимум 30 чел.."""
-        # TODO Доп. задание
+        max_group_size = 30
+        students_count = obj.subscriptions.filter(is_active=True).count()
+        groups_count = obj.groups.count()
+
+        if groups_count == 0:
+            return 0
+        return min(
+            100, (students_count / (groups_count * max_group_size)) * 100
+        )
 
     def get_demand_course_percent(self, obj):
         """Процент приобретения курса."""
-        # TODO Доп. задание
+        total_users = User.objects.count()
+        if total_users == 0:
+            return 0
+
+        students_count = obj.subscriptions.filter(is_active=True).count()
+        return (students_count / total_users) * 100
 
     class Meta:
         model = Course
