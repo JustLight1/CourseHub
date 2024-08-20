@@ -250,3 +250,9 @@
 - [Django 4.2.10](https://docs.djangoproject.com/en/4.2/)
 - [Django REST Framework 3.14.0](https://www.django-rest-framework.org/)
 - [Djoser 2.2.0](https://djoser.readthedocs.io/en/latest/getting_started.html)
+
+## Автор:
+
+**Форов Александр**
+
+[![Telegram Badge](https://img.shields.io/badge/-Light_88-blue?style=social&logo=telegram&link=https://t.me/Light_88)](https://t.me/Light_88) [![Gmail Badge](https://img.shields.io/badge/forov.py@gmail.com-c14438?style=flat&logo=Gmail&logoColor=white&link=mailto:forov.py@gmail.com)](mailto:forov.py@gmail.com)
