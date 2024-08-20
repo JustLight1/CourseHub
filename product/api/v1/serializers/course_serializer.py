@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-from django.db.models import Avg, Count
 from rest_framework import serializers
 
 from courses.models import Course, Group, Lesson
