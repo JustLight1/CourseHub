@@ -12,15 +12,20 @@ class CustomUserSerializer(UserSerializer):
 
     class Meta:
         model = User
+        fields = (
+            '__all__'
+        )
 
 
 class SubscriptionSerializer(serializers.ModelSerializer):
     """Сериализатор подписки."""
 
-    # TODO
+    course = serializers.CharField(source='course.title', read_only=True)
 
     class Meta:
         model = Subscription
         fields = (
-            # TODO
+            'user',
+            'course',
+            'is_active',
         )
