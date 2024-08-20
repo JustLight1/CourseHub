@@ -3,7 +3,7 @@ from django.db.models import Avg, Count
 from rest_framework import serializers
 
 from courses.models import Course, Group, Lesson
-from users.models import Subscription
+# from users.models import Subscription
 
 User = get_user_model()
 
@@ -18,7 +18,7 @@ class LessonSerializer(serializers.ModelSerializer):
         fields = (
             'title',
             'link',
-            'course'
+            'course',
         )
 
 
@@ -30,7 +30,7 @@ class CreateLessonSerializer(serializers.ModelSerializer):
         fields = (
             'title',
             'link',
-            'course'
+            'course',
         )
 
 
@@ -53,6 +53,7 @@ class GroupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Group
+        fields = ('__all__')
 
 
 class CreateGroupSerializer(serializers.ModelSerializer):
@@ -61,8 +62,7 @@ class CreateGroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
         fields = (
-            'title',
-            'course',
+            '__all__'
         )
 
 
@@ -109,6 +109,7 @@ class CourseSerializer(serializers.ModelSerializer):
             'title',
             'start_date',
             'price',
+            'is_available',
             'lessons_count',
             'lessons',
             'demand_course_percent',
@@ -122,3 +123,11 @@ class CreateCourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
+        fields = (
+            'id',
+            'author',
+            'title',
+            'start_date',
+            'price',
+            'is_available',
+        )
