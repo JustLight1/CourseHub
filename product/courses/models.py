@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import CustomUser
+
 
 class Course(models.Model):
     """Модель продукта - курса."""
@@ -67,9 +69,31 @@ class Lesson(models.Model):
 class Group(models.Model):
     """Модель группы."""
 
-    # TODO
+    title = models.CharField(
+        max_length=255,
+        verbose_name='Название группы',
+    )
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+        related_name='groups',
+        verbose_name='Курс',
+    )
+    max_students = models.PositiveIntegerField(
+        verbose_name='Максимальное количество студентов',
+        default=30,
+    )
+    students = models.ManyToManyField(
+        CustomUser,
+        related_name='student_groups',
+        verbose_name='Студенты',
+        blank=True,
+    )
 
     class Meta:
         verbose_name = 'Группа'
         verbose_name_plural = 'Группы'
         ordering = ('-id',)
+
+    def __str__(self):
+        return self.title
