@@ -29,6 +29,13 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.get_full_name()
 
+    def save(self, *args, **kwargs):
+        if self.pk is None:
+            super().save(*args, **kwargs)
+            Balance.objects.create(user=self)
+        else:
+            super().save(*args, **kwargs)
+
 
 class Balance(models.Model):
     """Модель баланса пользователя."""
