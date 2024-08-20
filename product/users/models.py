@@ -70,16 +70,19 @@ class Subscription(models.Model):
         on_delete=models.CASCADE,
         related_name='subscriptions',
         verbose_name='Пользователь',
+        db_index=True,
     )
     course = models.ForeignKey(
         Course,
         on_delete=models.CASCADE,
         related_name='subscriptions',
         verbose_name='Курс',
+        db_index=True,
     )
     is_active = models.BooleanField(
         default=False,
         verbose_name='Активная подписка',
+        db_index=True,
     )
 
     class Meta:
